@@ -1,6 +1,7 @@
 import gym
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 
 def run_episode(env, parameters):
     observation = env.reset()
@@ -30,6 +31,9 @@ def train(submit):
             bestparams = parameters
             if reward == 200:
                 break
+
+    # Save bestparams to disk
+    pickle.dump(bestparams, open('random.bin', 'w'))
 
     if submit:
         for _ in xrange(100):
